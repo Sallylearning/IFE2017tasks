@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task3</title>
+	<script src="js/echarts.min.js"></script>
+	<script src="js/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+	<div id="main" style="width: 1000px;height: 1000px;text-align:center;margin:0 auto;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById("main"));
+		myChart.showLoading();
+
+		$.get('data/data.json', function (WorldJson) {
+		    myChart.hideLoading();
+
+		    echarts.registerMap('World', WorldJson);
+		    option = {
+		        title: {
+		            text: 'worldmap',
+		            left: 'center'
+		        },
+		        tooltip: {
+		            trigger: 'item',
+		            show: false
+		        },
+		        toolbox: {
+		            show: true,
+		            left: 'right',
+		            top: 'top',
+		            feature: {
+		                dataView: {readOnly: false},
+		                restore: {},
+		                saveAsImage: {}
+		            }
+		        },
+		        series: [
+		            {
+		                name: 'World Countries',
+		                type: 'map',
+		                roam: true,
+		                map: 'World',
+		                itemStyle:{
+		                    emphasis:{label:{show:true}}
+		                }
+		            }
+		        ]
+		    };
+
+		    myChart.setOption(option);
+		});
+		
+	</script>
+</body>
+</html>
