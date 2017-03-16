@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bar</title>
+	<script src="echarts.min.js"></script>
+</head>
+<body>
+	<div id="main" style="width: 900px;height: 900px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById("main"));
+		var option = {
+			title:{
+				show: true,
+				text: 'task001',
+				subtext: 'this is my first chart',
+				//left: 'center',
+				left: 100,
+			},
+			toolbox: {
+				show: true,
+				feature: {
+					saveAsImage: {
+						show: true
+					},
+					restore: {
+						show: true
+					},
+					dataView: {
+						show: true
+					},
+					dataZoom: {
+						show: true
+					},
+					magicType: {
+						type: ['line','bar']
+					}
+				}
+			},
+			tooltip: {
+				trigger: 'axis'
+			},
+			//图例
+			legend: {
+				data: ['食堂光顾次数']
+			},
+			//x轴
+			xAxis: {
+				data: ['东一','中快','桃园','东三','桃林面馆','北苑食堂','小食堂','清真']
+			},
+			//y轴
+			yAxis: {},
+			//数据
+			series: [{
+				name: '食堂光顾次数',
+				type: 'bar',
+				data: [5,10,10,3,5,1,6,3],
+				markPoint: {
+					data: [
+						{type: 'max',name: '最大值'},
+						{type: 'min',name: '最小值',symbol:'diamond'}
+					]
+				},
+				markLine: {
+					data: [
+						{type: 'average',name: '平均值'}
+					],					
+					animationEasing:'bounceInOut'
+				}
+			},{
+				name: '食堂预计光顾次数',
+				type: 'line',
+				data: [2,7,1,6,5,2,10,8],
+				markPoint: {
+					data: [
+						{type: 'max',name: '最大值'},
+						{type: 'min',name: '最小值',symbol:'diamond'}
+					]
+				},
+				markLine: {
+					data: [
+						{type: 'average',name: '平均值'}
+					],					
+					animationEasing:'bounceInOut'
+				}
+			}]
+
+		};
+		//使用刚刚指定的配置项和数据显示图表
+		myChart.setOption(option);
+	</script>
+</body>
+</html>
